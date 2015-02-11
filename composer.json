@@ -1,5 +1,5 @@
 {
-    "name": "wajatimur/odbc-driver",
+    "name": "stemwinder/odbc-driver",
     "type": "library",
     "description": "ODBC Driver for Laravel",
     "keywords": ["odbc","laravel"],
