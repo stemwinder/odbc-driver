@@ -1,8 +1,11 @@
 <?php namespace Foundation\Database\Driver;
 
+require_once('Grammars/DB2.php');
+
 use Illuminate\Database\Connection;
 use Illuminate\Database\Query\Grammars\Grammar as IllGrammar;
 use Illuminate\Database\Schema\Grammars\Grammar as SchemaGrammar;
+use Foundation\Database\Driver\Grammars\DB2 as DB2Grammar;
 
 
 class ODBCDriverConnection extends Connection
@@ -26,7 +29,7 @@ class ODBCDriverConnection extends Connection
 			}
 		}
 
-		return $this->withTablePrefix(new IllGrammar);
+		return $this->withTablePrefix(new DB2Grammar);
 	}
 
 	/**
@@ -35,7 +38,7 @@ class ODBCDriverConnection extends Connection
 	 */
 	protected function getDefaultSchemaGrammar()
 	{
-		return $this->withTablePrefix(new SchemaGrammar);
+		return $this->withTablePrefix(new DB2Grammar);
 	}
 
 	protected function getGrammarConfig()
