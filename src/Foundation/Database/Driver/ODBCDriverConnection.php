@@ -1,7 +1,8 @@
 <?php namespace Foundation\Database\Driver;
 
 use Illuminate\Database\Connection;
-use Illuminate\Database\Schema\Grammars\Grammar;
+use Illuminate\Database\Query\Grammars\Grammar as IllGrammar;
+use Illuminate\Database\Schema\Grammars\Grammar as SchemaGrammar;
 
 
 class ODBCDriverConnection extends Connection
@@ -19,13 +20,13 @@ class ODBCDriverConnection extends Connection
 				return $this->withTablePrefix(new $packageGrammar);
 			}
 			
-			$illuminateGrammar = "Illuminate\\Database\\Query\\Grammars\\" . $grammarConfig;
+			$illuminateGrammar = "IllGrammar\\" . $grammarConfig;
 			if (class_exists($illuminateGrammar)) {
 				return $this->withTablePrefix(new $illuminateGrammar);
 			}
 		}
 
-		return $this->withTablePrefix(new Grammar);
+		return $this->withTablePrefix(new IllGrammar);
 	}
 
 	/**
@@ -34,7 +35,7 @@ class ODBCDriverConnection extends Connection
 	 */
 	protected function getDefaultSchemaGrammar()
 	{
-		return $this->withTablePrefix(new Grammar);
+		return $this->withTablePrefix(new SchemaGrammar);
 	}
 
 	protected function getGrammarConfig()
