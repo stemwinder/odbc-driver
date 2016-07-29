@@ -1,11 +1,13 @@
 <?php namespace Foundation\Database\Driver;
 
 require_once('Grammars/DB2.php');
+require_once('Processors/DB2Processor.php');
 
 use Illuminate\Database\Connection;
 use Illuminate\Database\Query\Grammars\Grammar as IllGrammar;
 use Illuminate\Database\Schema\Grammars\Grammar as SchemaGrammar;
 use Foundation\Database\Driver\Grammars\DB2 as DB2Grammar;
+use Foundation\Database\Driver\Processors\DB2Processor;
 
 
 class ODBCDriverConnection extends Connection
@@ -48,5 +50,17 @@ class ODBCDriverConnection extends Connection
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get the default post processor instance.
+	 *
+	 * TODO: Refactor into dedicated DB2Connection file.
+	 *
+	 * @return \Illuminate\Database\Query\Processors\Processor
+	 */
+	protected function getDefaultPostProcessor()
+	{
+		return new DB2Processor;
 	}
 }
